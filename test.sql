@@ -128,9 +128,9 @@ GROUP BY EXTRACT(month FROM n.submit_timestamp), n.survey_type
 )
 SELECT
     n.month,
-	n.survey_type,
-	n.nps_score,
-	r.return_buyers*100.00/n.total_buyers AS retention_rate
+    n.survey_type,
+    n.nps_score,
+    r.return_buyers*100.00/n.total_buyers AS retention_rate
 FROM nps n LEFT JOIN retention r ON n.month = r.month AND n.survey_type = r.survey_type
 ORDER BY n.survey_type, n.month
 
