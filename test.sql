@@ -5,13 +5,13 @@ Q1:--Kết quả test Postgresql:
        2323323	               	                                    x
 --Orders có mô tả successful pickup thì vẫn có khả năng là abnormal case đúng không anh?
 SELECT
-order_id,
-CASE WHEN pickup_attempt_description = 'Successful Pickup' THEN 'x' ELSE ' ' END AS is_succesful_pick_up,
-CASE WHEN 
-     EXTRACT(minute FROM MAX(pickup_attempt_timestamp) - MIN(pickup_attempt_timestamp)) < 2
-     OR COUNT(DISTINCT pickup_attempt_timestamp) < 6
-     OR COUNT(DISTINCT EXTRACT(DAY FROM pickup_attempt_timestamp)) < 2 
-     THEN 'x' ELSE ' ' END AS is_abnormal
+   order_id,
+   CASE WHEN pickup_attempt_description = 'Successful Pickup' THEN 'x' ELSE ' ' END AS is_succesful_pick_up,
+   CASE WHEN 
+      EXTRACT(minute FROM MAX(pickup_attempt_timestamp) - MIN(pickup_attempt_timestamp)) < 2
+      OR COUNT(DISTINCT pickup_attempt_timestamp) < 6
+      OR COUNT(DISTINCT EXTRACT(DAY FROM pickup_attempt_timestamp)) < 2 
+      THEN 'x' ELSE ' ' END AS is_abnormal
 FROM pickup_attempts
 GROUP BY order_id, is_succesful_pick_up
   
