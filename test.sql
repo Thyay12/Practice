@@ -69,7 +69,7 @@ SELECT
   SUM(nb_failed_deli)*100.00 / SUM(nb_create_order) AS failed_deli_rate
 FROM failed_delivery
 WHERE grass_date >= CURRENT_DATE - INTERVAL '3 months'
-GROUP BY grass_date, shipping_carrier     --em thấy đoạn này chắc sai sai :)
+GROUP BY grass_date, shipping_carrier     --đoạn này chắc cũng sai :)
 ORDER BY grass_date, shipping_carrier
 )
 SELECT * FROM tab1
