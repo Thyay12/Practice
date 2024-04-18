@@ -101,8 +101,8 @@ WITH nps AS
 (
 SELECT 
     EXTRACT(month FROM 	submit_timestamp) AS month,
-	survey_type,
-	COUNT(DISTINCT user_id) AS total_buyers,
+    survey_type,
+    COUNT(DISTINCT user_id) AS total_buyers,
     (COUNT(CASE WHEN score IN (9, 10) THEN 1 END) - 
 	 COUNT(CASE WHEN score >= 0 AND score <= 6 THEN 1 END))*100.00/COUNT(*) AS nps_score
 FROM nps_raw
